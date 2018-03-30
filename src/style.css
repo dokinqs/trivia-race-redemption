@@ -1,0 +1,64 @@
+html {
+  text-align: center;
+  font-family: Oswald, sans-serif;
+  /* background-position: center; */
+  background-size: cover;
+  background-repeat: no-repeat;
+  /* cursor: url('https://image.flaticon.com/icons/png/128/271/271439.png'), auto; */
+  cursor: url('carrotpointer.png');
+}
+.index {
+  padding: 140px;
+}
+h1 {
+  background: white;
+  margin: 0 20%;
+}
+h2 {
+  background: gray;
+  opacity: .9;
+  margin: 0 20%;
+} 
+.text {
+  background: white;
+  opacity: .8;
+  margin: 0 10%;
+}
+.name {
+  padding: 10px;
+  font-size: 20px;
+}
+.start {
+  background: green;
+  color: white;
+  text-decoration: none;
+}
+
+/* GAME */
+
+.game {
+  height: 300px;
+}
+.turtle {
+  width: 90px;
+  text-align: none;
+  position: absolute;
+  left: 90px;
+  top: 10px;
+  transition-duration: 30s;
+}
+.turtle:hover {
+  left: 1200px;
+}
+.rabbit {
+  width: 150px;
+  text-align: none;
+  position: absolute;
+  left: 0;
+  top: 150px;
+}
+.finishline {
+  height: 300px;
+  right: 0;
+  position: absolute;
+}
