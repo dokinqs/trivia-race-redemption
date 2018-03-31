@@ -61,10 +61,19 @@ $(document).ready(function () {
 
   // 1. bkgd image on load
   $('body').css('background-image', "url('https://cdn-images-1.medium.com/max/1600/1*3SAWEV0Q5P8x2i6eY6ht1A.jpeg')");
+  // $('.game').hide();
 
   // show total score and answers at end
   function showAns() {
     console.log(`TOTAL correct score: ${correctScore}`);
+    
+    // $('div').hide();
+    setTimeout(function() {
+      console.log('set timeout');
+      // $('.quiz').hide();
+      $('div').hide();
+    }, 5000);
+
     if (correctScore === QUESTIONS.length) {
       $('h1').appendTo('html').text('You won!');
     } else {
@@ -76,13 +85,18 @@ $(document).ready(function () {
   function showQuestionsAns() {
     // if end of quiz
     if (currentQ === QUESTIONS.length) {
-      $('.quiz').hide();
+      // setTimeout(function() {
+      //   console.log('set timeout');
+      //   // $('.quiz').hide();
+      //   $('.game').hide();
+      // }, 9000);
       showAns();
+      console.log('end');
       return;
     }
     // show question and answer choices
     $('.questions').html(QUESTIONS[currentQ].question);
-    // $('.timer').html(`${timeCount}secs left`);
+    // $('.timer').html(`${timeCount} secs left`);
 
     $('.a').html(QUESTIONS[currentQ].choices[0]);
     $('.b').html(QUESTIONS[currentQ].choices[1]);
@@ -94,11 +108,21 @@ $(document).ready(function () {
     console.log(`Correct ans: ${QUESTIONS[currentQ].correctAns}`);
   }
 
+  // move turtle timer right
+  function moveTurtle() {
+    // easy: slow speed
+    // $('.turtle').animate({left: "+=900"}, 100);
+    // hard: fast speed
+    $('.turtle').animate({left: "+=2100"}, 100);
+  }
+
   // 3. start game and show quiz
   function playGame() {
     $('body').show();
     $('.ans').show();
+    $('.game').show();
     showQuestionsAns();
+    moveTurtle();
   }
 
   // save username after start button clicked
@@ -115,14 +139,23 @@ $(document).ready(function () {
     playGame();
   });
 
+  // move rabbit right 100px every right answer
+  function moveRabbit() {
+    $('.rabbit').animate({left: "+=230"}, 400);
+  }
+
   // 5. show next question after answer clicked
   $('.ans').click(function () {
+    // if clicked last answer of quiz
     if (currentQ === 5) {
       return;
+    // correct answer 
     } else if (parseInt($(this).val()) === QUESTIONS[currentQ].correctAns) {
+      moveRabbit();
       correctScore += 1;
       console.log("User ans: " + $(this).val());
       console.log(`CORRECT SCORE: ${correctScore}`);
+    // wrong answer
     } else {
       console.log("User ans: " + $(this).val());
       console.log("Wrong");
