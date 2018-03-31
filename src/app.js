@@ -1,141 +1,135 @@
+console.log('JS');
+
 $(document).ready(function () {
-  let currentQ = 0;
-  const QUESTIONS = [
+  console.log('JQuery');
+  const QUESTIONS = 
+  [
     {
       question: "Who invented champagne?",
-      choices: {
-        a: "Carlos Herrera",
-        b: "Nicholas Feuillate",
-        c: "Dom Perignon",
-        d: "G.H.Mumm"
-      },
+      choices: [
+        "Carlos Herrera",
+        "Nicholas Feuillate",
+        "Dom Perignon",
+        "G.H.Mumm"
+      ],
       correctAns: 2
     },
     {
       question: "What's the world's biggest island?",
-      choices: {
-        a: "Iceland",
-        b: "Japan",
-        c: "Australia",
-        d: "Greenland"
-      },
+      choices: [
+        "Iceland",
+        "Japan",
+        "Australia",
+        "Greenland"
+      ],
       correctAns: 3
     },
     {
       question: "What color is Absynthe?",
-      choices: {
-        a: "Green",
-        b: "Blue",
-        c: "Red",
-        d: "Silver"
-      },
+      choices: [
+        "Green",
+        "Blue",
+        "Red",
+        "Silver"
+      ],
       correctAns: 0
     },
     {
       question: "What is true of Cointreau?",
-      choices: {
-        a: "It's the name of the French president",
-        b: "It's not orange-flavored",
-        c: "It's made of triple sec",
-        d: "It has a 20% alcoholic content."
-      },
+      choices: [
+        "It's the name of the French president",
+        "It's not orange-flavored",
+        "It's made of triple sec",
+        "It has a 10% alcoholic content."
+      ],
+      correctAns: 2
+    },
+    {
+      question: "When is the moon the closest to the Earth?",
+      choices: [
+        "at perihelion",
+        "at apogee",
+        "at perigee",
+        "at 300,000 miles"
+      ],
       correctAns: 2
     }
   ];
+  let currentQ = 0;
+  let correctScore = 0;
+  // let timeCount = 30;
 
-  // function homePage() {
-    // $('body').css('background-image', "url('https://cdn-images-1.medium.com/max/1600/1*3SAWEV0Q5P8x2i6eY6ht1A.jpeg')");
-    // $('body').css('background-image', "url('https://media.licdn.com/dms/image/C5112AQH21eT2aOC4lQ/article-inline_image-shrink_1500_2232/0?e=2121451200&v=alpha&t=M2KVdipEMX8nVvmAnkO-kcNjdDEDnolLBNUxL9ffuEU')");
+  // 1. bkgd image on load
+  $('body').css('background-image', "url('https://cdn-images-1.medium.com/max/1600/1*3SAWEV0Q5P8x2i6eY6ht1A.jpeg')");
 
-    // $('html').css('background-image', "url('https://thumbs.dreamstime.com/b/checkered-flag-flying-gray-gradient-design-race-sport-championship-background-vector-illustration-91861754.jpg')");
-
-    $('html').css('background-image', "url('https://outrunthezombeez.files.wordpress.com/2016/05/egj0x.gif?w=355&zoom=2')");
-
-    function playGame() {
-      $('body').load('game.html');
+  // show total score and answers at end
+  function showAns() {
+    console.log(`TOTAL correct score: ${correctScore}`);
+    if (correctScore === QUESTIONS.length) {
+      $('h1').appendTo('html').text('You won!');
+    } else {
+      $('h1').appendTo('html').text('You lost...');
     }
+  }
 
-    $('.start').click(function (e) {
-      playGame();
-    });
-
-  // }
-
-  // homePage();
-    function showQuestions () {
-      QUESTIONS.forEach(function (e) {
-        $('.quiz').html(`<h1>${e.question}</h1>`);
-        // $('.timer').html(`${timeCount}secs`);
-
-        $('.a').text(e.choices['a']);
-        $('.b').text(e.choices.b);
-        $('.c').html(e.choices.c);
-        $('.d').html(e.choices['d']);
-
-        console.log(`Choice a: ${e.choices.a}`);
-        let choicesList = e.choices;
-        console.log(choicesList);
-        // $('.button .a').text(QUESTIONS[currentQ].choices[0]).show();
-        // $('.button .b').text(QUESTIONS[currentQ].choices[1]).show();
-        // $('.button .c').text(QUESTIONS[currentQ].choices[2]).show();
-        // $('.button .d').text(QUESTIONS[currentQ].choices[3]).show();
-      });
+  // 4. load one question at a time
+  function showQuestionsAns() {
+    // if end of quiz
+    if (currentQ === QUESTIONS.length) {
+      $('.quiz').hide();
+      showAns();
+      return;
     }
-  // function timer() {
+    // show question and answer choices
+    $('.questions').html(QUESTIONS[currentQ].question);
+    // $('.timer').html(`${timeCount}secs left`);
 
-  // }
+    $('.a').html(QUESTIONS[currentQ].choices[0]);
+    $('.b').html(QUESTIONS[currentQ].choices[1]);
+    $('.c').html(QUESTIONS[currentQ].choices[2]);
+    $('.d').html(QUESTIONS[currentQ].choices[3]);
 
-    $('.ans').click(function(e) {
-      // let userAns = $(this).text();
-      // let userAns = e;
-      // $(.ans)
-      // console.log(`userAns: ${userAns}`);
-      // if (questionResult) {
-      // if ($(this).indexof(userAns) === QUESTIONS.correctAns) {
-      //   console.log('yes');
-      //   correctScore += 1;
-      //   // $('.rabbit').style.left = "200px";
-      //   // let rabbitpos = $('.rabbit').style.left;
-      //   // console.log(`left:${rabbitpos}`);
-      // } else {
-      //   console.log('no');
-      //   // let rabbitpos = $('.rabbit');
-      //   // console.log(`left wrong:${rabbitpos}`);
-      // }
-      // currentQ += 1;
-    });
-    
-      // function questionResult() {
-      //   QUESTIONS.forEach(function() {
-      //     if (userAns === QUESTIONS.correctAns) {
-      //       correctScore += 1;
-      //       return true;
-      //     } else {
-      //       return false;
-      //     }
-      //   });
-      // }
+    console.log(`Question #${currentQ+1}`)
+    console.log(QUESTIONS[currentQ].choices);
+    console.log(`Correct ans: ${QUESTIONS[currentQ].correctAns}`);
+  }
 
-      function showResult() {
-        $('body').load('result.html');
-        let results = `Congrats, ${name}, you got ${gotCorrect} out of ${QUESTIONS.length} questions correct!`;
-        console.log(results);
-        // QUESTIONS.forEach(function () {
+  // 3. start game and show quiz
+  function playGame() {
+    $('body').show();
+    $('.ans').show();
+    showQuestionsAns();
+  }
 
-        // });
-      }
+  // save username after start button clicked
+  function getUsername() {
+    let username = $('input').val();
+    console.log(`Hi, ${username}`);
+    return username;
+  }
 
-   });
+  // 2. click event listener on start button
+  $('.start').click(function () {
+    getUsername();
+    $('.firstpage').hide();
+    playGame();
+  });
+
+  // 5. show next question after answer clicked
+  $('.ans').click(function () {
+    if (currentQ === 5) {
+      return;
+    } else if (parseInt($(this).val()) === QUESTIONS[currentQ].correctAns) {
+      correctScore += 1;
+      console.log("User ans: " + $(this).val());
+      console.log(`CORRECT SCORE: ${correctScore}`);
+    } else {
+      console.log("User ans: " + $(this).val());
+      console.log("Wrong");
+    }
+    currentQ += 1;
+    showQuestionsAns();
+  });
 
 
-
-  // function resetGame() {
-  //   $(document).click(function() { location.reload(); });
-  // }
-
-  // https://opentdb.com/api.php?amount=5&category=9&difficulty=easy&type=multiple
-
-// GET http://trivia.propernerd.com/api/questions?limit=2&random=true&offset=2&style=jeopardy
-
-// });
-
+});

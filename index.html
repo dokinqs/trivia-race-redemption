@@ -2,39 +2,63 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <meta name="author" content="Karen Zhao">
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <link rel="stylesheet" href="src/style.css"/>
-  <link rel="icon" href="https://d30y9cdsu7xlg0.cloudfront.net/png/62992-200.png">
+  <link rel="icon" href="
+  https://cdn2.iconfinder.com/data/icons/road-and-navigation/180/20-512.png">
   <title>Trivia Race</title>
 </head>
-<body class="index">
+
+<body>
+
+<div class="firstpage">
+  
   <h1>Trivia Race Game</h1>
   <h2>Harey's Redemption</h2>
 
   <div class="text">
-  <p>
-    Oh no! Harey has fallen asleep during a race against Tortoise. <br/>Help Harey redeem himself and win the race.
-  </p>
-  <p>
-    Answer 5 trivia questions correctly within 30 seconds to defeat Tortoise!
-  </p>
-  <p>
-    0.2 MPH 🐢 vs. 🐰 40 MPH
-  </p>
+    <p>
+      Oh no! Harey has fallen asleep during a race against Tortoise. <br/>Help Harey redeem himself and win the race.
+    </p>
+    <p>
+      Answer 5 trivia questions correctly within 30 seconds to defeat Tortoise!
+    </p>
+    <p>
+      ... 0.2 MPH 🐢 vs. 🐰 40 MPH !!!
+    </p>
   </div>
 
   <div>
-      <input class="name" type="text" placeholder="What's your name?">
-      <!-- <button class="name"> -->
-      <a class="name start" href="game.html" role="button">PLAY GAME</a>
-    <!-- </button> -->
+    <form>
+      <input class="username" type="text" placeholder="What's your name?">
+      <button class="start" type="button">PLAY GAME</a>
+    </form>
   </div>
 
-  <!-- <img src="https://outrunthezombeez.files.wordpress.com/2016/05/egj0x.gif?w=355&zoom=2" class="gif"/> -->
+</div>
 
+<div class="quiz">
+
+  <div class='timer'></div>
+
+  <div class="questions"></div>
+
+  <div class="choices">
+    <button class="ans a" value="0"></button>
+    <button class="ans b" value="1"></button>
+    <button class="ans c" value="2"></button>
+    <button class="ans d" value="3"></button>
+  </div>
+  
+</div>
+
+  <!-- <img src="https://outrunthezombeez.files.wordpress.com/2016/05/egj0x.gif?w=355&zoom=2" class="gif"/> -->
+    <!-- <div class="game">
+      <img class="turtle" src="https://vignette.wikia.nocookie.net/nintendo/images/c/c8/Turtwig.png/revision/latest?cb=20121110152512&path-prefix=en"/>
+      <img class="rabbit" src="https://t0.rbxcdn.com/71c6584f2a166e6d72e99af6582ca4ec"/>
+      <img class="finishline" src="https://t1.rbxcdn.com/877010da8ce131dfcb3fa6a9b07fea89"/>
+    </div> -->
 
   <script src="src/app.js"></script>
 </body>
