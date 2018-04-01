@@ -57,46 +57,45 @@ $(document).ready(function () {
   ];
   let currentQ = 0;
   let correctScore = 0;
-  // let timeCount = 30;
+  let timeCount = 30;
+  // let timerVar;
 
   // 1. bkgd image on load
   $('body').css('background-image', "url('https://cdn-images-1.medium.com/max/1600/1*3SAWEV0Q5P8x2i6eY6ht1A.jpeg')");
+  $('.reset').hide();
   // $('.game').hide();
+
+
+  $('.reset').click(function() {
+    console.log('reload 1');
+    location.reload(); 
+    console.log('reload 2');
+  });
 
   // show total score and answers at end
   function showAns() {
     console.log(`TOTAL correct score: ${correctScore}`);
-    
-    // $('div').hide();
-    setTimeout(function() {
-      console.log('set timeout');
-      // $('.quiz').hide();
-      $('div').hide();
-    }, 5000);
-
+    $('div').hide();
     if (correctScore === QUESTIONS.length) {
       $('h1').appendTo('html').text('You won!');
     } else {
       $('h1').appendTo('html').text('You lost...');
     }
+    $('.reset').show();
   }
 
   // 4. load one question at a time
   function showQuestionsAns() {
     // if end of quiz
-    if (currentQ === QUESTIONS.length) {
-      // setTimeout(function() {
-      //   console.log('set timeout');
-      //   // $('.quiz').hide();
-      //   $('.game').hide();
-      // }, 9000);
+    if (currentQ === QUESTIONS.length || timeCount === 0) {
       showAns();
       console.log('end');
+      clearInterval(timerVar);
       return;
     }
     // show question and answer choices
     $('.questions').html(QUESTIONS[currentQ].question);
-    // $('.timer').html(`${timeCount} secs left`);
+    $('.timer').html(`${timeCount} secs left`);
 
     $('.a').html(QUESTIONS[currentQ].choices[0]);
     $('.b').html(QUESTIONS[currentQ].choices[1]);
@@ -111,14 +110,15 @@ $(document).ready(function () {
   // move turtle timer right
   function moveTurtle() {
     // easy: slow speed
-    // $('.turtle').animate({left: "+=900"}, 100);
+    // $('.turtle').animate({left: "+=500"}, 100);
     // hard: fast speed
-    $('.turtle').animate({left: "+=2100"}, 100);
+    $('.turtle').animate({left: "+=800"}, 100);
   }
 
   // 3. start game and show quiz
   function playGame() {
     $('body').show();
+    $('.timer').show();
     $('.ans').show();
     $('.game').show();
     showQuestionsAns();
@@ -132,12 +132,27 @@ $(document).ready(function () {
     return username;
   }
 
+  function timer() {
+    timeCount -= 1;
+    if (timeCount === 0) {
+      clearInterval(timerVar);
+      console.log('clear interval');
+      showAns();
+      return;
+    }
+    $('.timer').html(`time left: ${timeCount}`);
+    console.log(`time count: ${timeCount}`);
+  }
+
   // 2. click event listener on start button
-  $('.start').click(function () {
+  $('.form').submit(function (e) {
+    e.preventDefault();
     getUsername();
     $('.firstpage').hide();
     playGame();
+    timerVar = setInterval(timer, 1000);
   });
+
 
   // move rabbit right 100px every right answer
   function moveRabbit() {

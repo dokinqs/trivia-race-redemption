@@ -27,6 +27,7 @@ h2 {
 } 
 button {
   display: hide;
+  /* if display: none; idk why uncenters */
 }
 .text {
   background: white;
@@ -63,8 +64,10 @@ button {
   font-size: 50px;
   font-weight: bold;
 }
-.ans {
+button {
   font-size: 30px;
+  padding: 10px;
+  margin: 15px;
 }
 .turtle {
   width: 90px;
