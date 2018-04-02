@@ -58,29 +58,34 @@ $(document).ready(function () {
   let currentQ = 0;
   let correctScore = 0;
   let timeCount = 30;
-  // let timerVar;
+  let username;
 
   // 1. bkgd image on load
-  $('body').css('background-image', "url('https://cdn-images-1.medium.com/max/1600/1*3SAWEV0Q5P8x2i6eY6ht1A.jpeg')");
+  $('body').css('background-image', "url('https://outrunthezombeez.files.wordpress.com/2016/05/egj0x.gif?w=355&zoom=2')");
   $('.reset').hide();
   // $('.game').hide();
 
-
   $('.reset').click(function() {
-    console.log('reload 1');
     location.reload(); 
-    console.log('reload 2');
   });
 
   // show total score and answers at end
   function showAns() {
     console.log(`TOTAL correct score: ${correctScore}`);
     $('div').hide();
+    $('.overlay').show();
+    // if win
     if (correctScore === QUESTIONS.length) {
-      $('h1').appendTo('html').text('You won!');
+      $('h1').appendTo('html').text('You Won!');
+      $('body').css('background-image', "url('https://giftsandmiracles.com/wp-content/uploads/2016/04/happy-bunny.jpg')");
+    // if lost
     } else {
-      $('h1').appendTo('html').text('You lost...');
+      $('h1').appendTo('body').text('You Lost...');
+      $('body').css('background-image', "url('https://spark.ru/upload/other/b_5a6ae33d77356.jpg')");
     }
+    let results = `${username}, you got ${correctScore} out of ${QUESTIONS.length} questions right in ${30-timeCount} seconds!`;
+    console.log(results);
+    $('h2').appendTo('body').html(results);
     $('.reset').show();
   }
 
@@ -95,7 +100,7 @@ $(document).ready(function () {
     }
     // show question and answer choices
     $('.questions').html(QUESTIONS[currentQ].question);
-    $('.timer').html(`${timeCount} secs left`);
+    $('.timer').html(`(${timeCount} seconds)`);
 
     $('.a').html(QUESTIONS[currentQ].choices[0]);
     $('.b').html(QUESTIONS[currentQ].choices[1]);
@@ -109,15 +114,14 @@ $(document).ready(function () {
 
   // move turtle timer right
   function moveTurtle() {
-    // easy: slow speed
-    // $('.turtle').animate({left: "+=500"}, 100);
-    // hard: fast speed
-    $('.turtle').animate({left: "+=800"}, 100);
+    // $('.turtle').animate({left: "+=1000"}, 100);
+    $('.turtle').animate({left: "+=80vw"}, 100);
   }
 
   // 3. start game and show quiz
   function playGame() {
     $('body').show();
+    $('body').css('background-image', "url('https://i.ytimg.com/vi/h9N60GCN1iY/maxresdefault.jpg')");
     $('.timer').show();
     $('.ans').show();
     $('.game').show();
@@ -127,8 +131,13 @@ $(document).ready(function () {
 
   // save username after start button clicked
   function getUsername() {
-    let username = $('input').val();
-    console.log(`Hi, ${username}`);
+    console.log('input: ' + $('input').val());
+    if ($('input').val() === undefined || $('input').val() === null || $('input').val() === "") {
+      username = "Harey";
+    } else {
+      username = $('input').val();
+    }
+    console.log(`Hi ${username}`);
     return username;
   }
 
@@ -140,7 +149,7 @@ $(document).ready(function () {
       showAns();
       return;
     }
-    $('.timer').html(`time left: ${timeCount}`);
+    $('.timer').html(`Time left: ${timeCount}`);
     console.log(`time count: ${timeCount}`);
   }
 
@@ -156,7 +165,10 @@ $(document).ready(function () {
 
   // move rabbit right 100px every right answer
   function moveRabbit() {
-    $('.rabbit').animate({left: "+=230"}, 400);
+    // $('.rabbit').animate({left: "+=230"}, 400);
+    // $('.rabbit').animate({left: "20%"}, 400);
+    // $('.rabbit').animate({left: "50%", transform: 'translateX(-50%)'}.animate({top: '100px'}, 700);
+    $('.rabbit').animate({left: "+=30vw"}, 400);
   }
 
   // 5. show next question after answer clicked
