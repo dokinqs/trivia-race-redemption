@@ -5,55 +5,75 @@ $(document).ready(function () {
   const QUESTIONS = 
   [
     {
-      question: "Who invented champagne?",
+      question: "Which URL is the most expensive domain name of all time?",
       choices: [
-        "Carlos Herrera",
-        "Nicholas Feuillate",
-        "Dom Perignon",
-        "G.H.Mumm"
+        "Insurance.com",
+        "Internet.com",
+        "Business.com",
+        "Beer.com"
       ],
-      correctAns: 2
+      correctAns: 0
     },
     {
-      question: "What's the world's biggest island?",
+      question: "Nephelococcygia” is the practice of doing what?",
       choices: [
-        "Iceland",
-        "Japan",
-        "Australia",
-        "Greenland"
+        "Finding shapes in clouds",
+        "Sleeping with your eyes open",
+        "Breaking glass with your voice",
+        "Swimming in freezing water"
       ],
-      correctAns: 3
+      correctAns: 0
     },
     {
-      question: "What color is Absynthe?",
+      question: "In the game Who Wants to be a Millionaire, which option was NOT a lifeline a contestant had?",
+      choices: [
+        "Ask the Audience",
+        "Get a Hint",
+        "Phone a Friend",
+        "50:50"
+      ],
+      correctAns: 1
+    },
+    {
+      question: "What color is Amaranth?",
       choices: [
         "Green",
         "Blue",
         "Red",
         "Silver"
       ],
+      correctAns: 2
+    },
+    {
+      question: "Who is John Cena?",
+      choices: [
+        "WWE superstar, actor, and rapper",
+        "Who? I don't see anyone",
+        "Don't pick this answer",
+        "BUM BA DUM BUMM"
+      ],
       correctAns: 0
-    },
-    {
-      question: "What is true of Cointreau?",
-      choices: [
-        "It's the name of the French president",
-        "It's not orange-flavored",
-        "It's made of triple sec",
-        "It has a 10% alcoholic content."
-      ],
-      correctAns: 2
-    },
-    {
-      question: "When is the moon the closest to the Earth?",
-      choices: [
-        "at perihelion",
-        "at apogee",
-        "at perigee",
-        "at 300,000 miles"
-      ],
-      correctAns: 2
     }
+        // {
+    //   question: "What is true of Cointreau?",
+    //   choices: [
+    //     "It's the name of the French president",
+    //     "It's not orange-flavored",
+    //     "It's made of triple sec",
+    //     "It has a 10% alcoholic content."
+    //   ],
+    //   correctAns: 2
+    // },
+    // {
+    //   question: "When is the moon the closest to the Earth?",
+    //   choices: [
+    //     "at perihelion",
+    //     "at apogee",
+    //     "at perigee",
+    //     "at 300,000 miles"
+    //   ],
+    //   correctAns: 2
+    // }
   ];
   let currentQ = 0;
   let correctScore = 0;
@@ -61,7 +81,7 @@ $(document).ready(function () {
   let username;
 
   // 1. bkgd image on load
-  $('body').css('background-image', "url('https://outrunthezombeez.files.wordpress.com/2016/05/egj0x.gif?w=355&zoom=2')");
+  $('body').css('background-image', "url('https://outrunthezombeez.files.wordpress.com/2016/05/egj0x.gif')");
   $('.reset').hide();
   // $('.game').hide();
 
@@ -73,10 +93,10 @@ $(document).ready(function () {
   function showAns() {
     console.log(`TOTAL correct score: ${correctScore}`);
     $('div').hide();
-    $('.overlay').show();
+
     // if win
     if (correctScore === QUESTIONS.length) {
-      $('h1').appendTo('html').text('You Won!');
+      $('h1').appendTo('body').text('You Won!');
       $('body').css('background-image', "url('https://giftsandmiracles.com/wp-content/uploads/2016/04/happy-bunny.jpg')");
     // if lost
     } else {
@@ -100,7 +120,8 @@ $(document).ready(function () {
     }
     // show question and answer choices
     $('.questions').html(QUESTIONS[currentQ].question);
-    $('.timer').html(`(${timeCount} seconds)`);
+    // 30 second timer
+    $('.timer').html(`Seconds left: ${timeCount}`);
 
     $('.a').html(QUESTIONS[currentQ].choices[0]);
     $('.b').html(QUESTIONS[currentQ].choices[1]);
@@ -149,7 +170,7 @@ $(document).ready(function () {
       showAns();
       return;
     }
-    $('.timer').html(`Time left: ${timeCount}`);
+    $('.timer').html(`Seconds left: ${timeCount}`);
     console.log(`time count: ${timeCount}`);
   }
 
@@ -168,7 +189,7 @@ $(document).ready(function () {
     // $('.rabbit').animate({left: "+=230"}, 400);
     // $('.rabbit').animate({left: "20%"}, 400);
     // $('.rabbit').animate({left: "50%", transform: 'translateX(-50%)'}.animate({top: '100px'}, 700);
-    $('.rabbit').animate({left: "+=30vw"}, 400);
+    $('.rabbit').animate({left: "+=17vw"}, 400);
   }
 
   // 5. show next question after answer clicked
