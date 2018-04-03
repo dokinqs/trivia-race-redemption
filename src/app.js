@@ -15,7 +15,7 @@ $(document).ready(function () {
       correctAns: 0
     },
     {
-      question: "Nephelococcygia” is the practice of doing what?",
+      question: "Nephelococcygia is the practice of doing what?",
       choices: [
         "Finding shapes in clouds",
         "Sleeping with your eyes open",
