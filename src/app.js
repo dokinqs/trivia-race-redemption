@@ -194,6 +194,11 @@ $(document).ready(function () {
 
   // 5. show next question after answer clicked
   $('.ans').click(function () {
+    // if JOHN CENA
+    if (currentQ === 4 && parseInt($(this).val()) == 3) {
+      window.location = "https://www.youtube.com/watch?v=4k1xY7v8dDQ";
+    }
+
     // if clicked last answer of quiz
     if (currentQ === 5) {
       return;
