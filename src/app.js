@@ -81,7 +81,7 @@ $(document).ready(function () {
   let username;
 
   // 1. bkgd image on load
-  $('body').css('background-image', "url('https://outrunthezombeez.files.wordpress.com/2016/05/egj0x.gif')");
+  // $('body').css('background-image', "url('https://outrunthezombeez.files.wordpress.com/2016/05/egj0x.gif')");
   $('.reset').hide();
   // $('.game').hide();
 

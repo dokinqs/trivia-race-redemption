@@ -9,6 +9,19 @@ html {
   /* cursor: url('https://78.media.tumblr.com/2af06ec2d6d542b9378ab539d1fec41a/tumblr_p6e81uoCjl1tgcve3o1_75sq.png'), auto; */
   /* original: https//teak.io/images/blog/carrot_transparent.png */
 }
+.firstpage::before {
+  content: "";
+  background-image: url('https://outrunthezombeez.files.wordpress.com/2016/05/egj0x.gif');
+  background-size: cover;
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -2;
+  opacity: 0.4; 
+}
 .index {
   padding: 10vw;
 }
@@ -95,6 +108,7 @@ button {
 }
 .turtle {
   width: 150px;
+  height: 80px;
   text-align: none;
   position: absolute;
   left: 90px;
@@ -110,9 +124,9 @@ button {
   top: 170px;
 }
 .finishline {
-  height: 330px;
+  height: 100px;
   top: 50px;
-  left: 980px;
+  left: 85vw;
   position: absolute;
   z-index: -1;
 }
@@ -155,14 +169,15 @@ div:after {
 
 @media (max-width: 768px) {
   .questions {
-    font-size: 30px;
+    font-size: 4vw;
   }
   .text {
     margin: 0 5vw;
-    font-size: 20px;
+    font-size: 3vw;
   }
   .turtle {
-    width: 100px;
+    width: 75px;
+    height: 40px;
     left: 70px;
     top: 200px;
   }
@@ -173,9 +188,11 @@ div:after {
     left: 0;
   }
   .finishline {
-    height: 200px;
+    height: 50px;
     top: 200px;
-    left: 600px;
     z-index: -1;
+  }
+  .ans {
+    font-size: 24px;
   }
 }
