@@ -1,7 +1,8 @@
 html {
+  height: 100%;
   text-align: center;
   font-family: 'Gochi Hand', sans-serif;
-  font-size: 30px;
+  font-size: 20px;
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -9,6 +10,7 @@ html {
   /* cursor: url('https://78.media.tumblr.com/2af06ec2d6d542b9378ab539d1fec41a/tumblr_p6e81uoCjl1tgcve3o1_75sq.png'), auto; */
   /* original: https//teak.io/images/blog/carrot_transparent.png */
 }
+
 .firstpage::before {
   content: "";
   background-image: url('https://outrunthezombeez.files.wordpress.com/2016/05/egj0x.gif');
@@ -20,59 +22,83 @@ html {
   width: 100%;
   height: 100%;
   z-index: -2;
-  opacity: 0.4; 
+  opacity: 0.4;
 }
-.index {
-  padding: 10vw;
+
+.lastpage::before {
+  content: "";
+  background: #fae2cc;
+  background-size: cover;
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -2;
+  opacity: 0.7;
 }
-input, button {
+
+input,
+button {
   cursor: url('../carrotpointer.png'), auto;
   border: 5px solid #e9b990;
   outline: none;
   font-family: 'Gochi Hand', sans-serif;
 }
-button:hover, input:hover {
-  box-shadow: 0 10px 20px 0 rgba(5, 53, 27, 0.6), 0 30px 50px 0 rgba(0,0,0,0.2);
+
+button:hover,
+input:hover {
+  /* h & v offset, blur & spread rad */
+  box-shadow: 5px 5px 5px 3px rgba(5, 53, 27, 0.3);
   background: rgb(205, 235, 193);
 }
+
 form {
   z-index: 10;
 }
+
 body {
-  min-height: 700px;
+  /* min-height: 640px; */
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
 }
+
 h1 {
-  background: #449a44;
-  margin: 5vw 20vw 4vw;
-  font-size: calc(30px + 2vw);
-  border: 1px black solid;
+  margin: 5vh 20vw 4vw;
+  font-size: calc(26px + 2vw);
   z-index: 10;
+  color: #004800;
 }
+
 h2 {
   background: #e9b990;
-  opacity: .9;
-  margin: 0 27vw;
+  opacity: .7;
+  margin: 0 22vw;
   font-size: calc(26px + 1vw);
-} 
+}
+
 button {
   display: hide;
-  /* if display: none; idk why uncenters */
+  /* if display: none; uncenters */
 }
+
 .text {
   background: white;
   opacity: .8;
   margin: 0 12vw;
 }
+
 .username {
   padding: 10px;
   font-size: 20px;
-  margin: 15px;
+  margin: 5px;
+  width: 160px; 
 }
+
 .start {
-  background: #449a44;
+  background: #90c290;
   text-decoration: none;
   padding: 10px;
   font-size: 20px;
@@ -81,95 +107,75 @@ button {
 /* GAME */
 
 .quiz {
-  padding: 50px;
-}
-.ans, .game {
   display: none;
-  margin: 10px 50px;
+  /* padding: 50px; */
 }
+
+.ans,
+.game {
+  display: none;
+  /* margin: 10px; */
+}
+
 .game {
   position: absolute;
   top: 300px;
   height: 300px;
 }
+
 .questions {
   font-size: 45px;
   font-weight: bold;
   background: #e9b990;
 }
+
 button {
   font-size: 30px;
   padding: 10px;
-  margin: 15px 30px;
-  width: 300px;
+  margin: 15px 5vw;
+  width: 35vw;
+  min-width: 140px;
 }
+
 .timer {
   color: white;
 }
+
 .turtle {
-  width: 150px;
-  height: 80px;
+  width: 90px;
+  height: 60px;
   text-align: none;
   position: absolute;
   left: 90px;
-  top: 70px;
+  top: 40px;
   transition-duration: 30s;
 }
+
 .rabbit {
-  width: 200px;
-  height: 200px;
+  width: 150px;
+  height: 150px;
   text-align: none;
   position: absolute;
   left: 0;
-  top: 170px;
+  top: 8vh;
 }
+
 .finishline {
   height: 100px;
   top: 50px;
-  left: 85vw;
+  left: 80vw;
   position: absolute;
-  z-index: -1;
+  z-index: 5;
 }
+
 .reset {
-  margin-top: 250px;
+  margin-top: 10vh;
   /* display: block; */
 }
-/* .firstpage {
-  z-index: 6;
-  background: inherit;
-}
-div {
-  z-index: 5;
-  background: inherit;
-} 
-.overlay {
-  opacity: .5;
-  background: white;
-  filter: blur(5px);
-  -webkit-filter: blur(5px);
-  height: 1000px;
-  width: 1200px;
-  position: absolute;
-  left: 0;
-  top: 0;
-  z-index: 5;
-}
-div:after {
-  content: '';
-  background: inherit;
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0; 
-  bottom: 0;
-  background-image: rbga(0,0,0,.4);
-  filter: blur(5px);
-  z-index: 3;
-} */
 
 @media (max-width: 768px) {
   .questions {
-    font-size: 4vw;
+    font-size: 4vh;
   }
   .text {
     margin: 0 5vw;
@@ -179,20 +185,21 @@ div:after {
     width: 75px;
     height: 40px;
     left: 70px;
-    top: 200px;
+    top: 140px;
   }
   .rabbit {
     width: 100px;
     height: 100px;
-    top: 270px;
+    top: 120px;
     left: 0;
   }
   .finishline {
-    height: 50px;
-    top: 200px;
+    height: 40px;
+    top: 100px;
     z-index: -1;
   }
-  .ans {
-    font-size: 24px;
+  button.ans {
+    margin-right: 13vw;
+    font-size: 20px;
   }
 }

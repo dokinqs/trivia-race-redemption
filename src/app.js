@@ -1,10 +1,5 @@
-console.log('JS');
-
-$(document).ready(function () {
-  console.log('JQuery');
-  const QUESTIONS = 
-  [
-    {
+$(document).ready(() => {
+  const QUESTIONS = [{
       question: "Which URL is the most expensive domain name of all time?",
       choices: [
         "Insurance.com",
@@ -54,7 +49,7 @@ $(document).ready(function () {
       ],
       correctAns: 0
     }
-        // {
+    // {
     //   question: "What is true of Cointreau?",
     //   choices: [
     //     "It's the name of the French president",
@@ -75,38 +70,64 @@ $(document).ready(function () {
     //   correctAns: 2
     // }
   ];
-  let currentQ = 0;
-  let correctScore = 0;
-  let timeCount = 30;
-  let username;
+  let username,
+    currentQ = 0,
+    correctScore = 0,
+    timeCount = 30;
 
   // 1. bkgd image on load
   // $('body').css('background-image', "url('https://outrunthezombeez.files.wordpress.com/2016/05/egj0x.gif')");
-  $('.reset').hide();
+  
   // $('.game').hide();
+  $('.reset').hide();
+  $('.reset').click(() => {
+    location.reload();
+  });
+  $('.lastpage').hide();
 
-  $('.reset').click(function() {
-    location.reload(); 
+  // 2. click on start button
+  $('.form').submit((e) => {
+    e.preventDefault();
+    getUsername();
+    $('.firstpage').hide();
+    playGame();
+    timerVar = setInterval(timer, 1000);
   });
 
-  // show total score and answers at end
-  function showAns() {
-    console.log(`TOTAL correct score: ${correctScore}`);
-    $('div').hide();
-
-    // if win
-    if (correctScore === QUESTIONS.length) {
-      $('h1').appendTo('body').text('You Won!');
-      $('body').css('background-image', "url('https://giftsandmiracles.com/wp-content/uploads/2016/04/happy-bunny.jpg')");
-    // if lost
+  // save username after start button clicked
+  function getUsername() {
+    console.log('input: ' + $('input').val());
+    if ($('input').val() === undefined || $('input').val() === null || $('input').val() === "") {
+      username = "Harey";
     } else {
-      $('h1').appendTo('body').text('You Lost...');
-      $('body').css('background-image', "url('https://spark.ru/upload/other/b_5a6ae33d77356.jpg')");
+      username = $('input').val();
     }
-    let results = `${username}, you got ${correctScore} out of ${QUESTIONS.length} questions right in ${30-timeCount} seconds!`;
-    console.log(results);
-    $('h2').appendTo('body').html(results);
-    $('.reset').show();
+    console.log(`Hi ${username}`);
+    return username;
+  }
+  
+  // 3. start game and show quiz
+  function playGame() {
+    $('body').show();
+    $('body').css('background-image', "url('https://i.ytimg.com/vi/h9N60GCN1iY/maxresdefault.jpg')");
+    $('.quiz').show();
+    $('.timer').show();
+    $('.ans').show();
+    $('.game').show();
+    showQuestionsAns();
+    moveTurtle();
+  }
+
+  function timer() {
+    timeCount -= 1;
+    if (timeCount === 0) {
+      clearInterval(timerVar);
+      console.log('clear interval');
+      showAns();
+      return;
+    }
+    $('.timer').html(`Seconds left: ${timeCount}`);
+    console.log(`time count: ${timeCount}`);
   }
 
   // 4. load one question at a time
@@ -135,65 +156,23 @@ $(document).ready(function () {
 
   // move turtle timer right
   function moveTurtle() {
-    // $('.turtle').animate({left: "+=1000"}, 100);
-    $('.turtle').animate({left: "+=80vw"}, 100);
+    $('.turtle').animate({
+      left: "+=80vw"
+    }, 100);
   }
 
-  // 3. start game and show quiz
-  function playGame() {
-    $('body').show();
-    $('body').css('background-image', "url('https://i.ytimg.com/vi/h9N60GCN1iY/maxresdefault.jpg')");
-    $('.timer').show();
-    $('.ans').show();
-    $('.game').show();
-    showQuestionsAns();
-    moveTurtle();
-  }
-
-  // save username after start button clicked
-  function getUsername() {
-    console.log('input: ' + $('input').val());
-    if ($('input').val() === undefined || $('input').val() === null || $('input').val() === "") {
-      username = "Harey";
-    } else {
-      username = $('input').val();
-    }
-    console.log(`Hi ${username}`);
-    return username;
-  }
-
-  function timer() {
-    timeCount -= 1;
-    if (timeCount === 0) {
-      clearInterval(timerVar);
-      console.log('clear interval');
-      showAns();
-      return;
-    }
-    $('.timer').html(`Seconds left: ${timeCount}`);
-    console.log(`time count: ${timeCount}`);
-  }
-
-  // 2. click event listener on start button
-  $('.form').submit(function (e) {
-    e.preventDefault();
-    getUsername();
-    $('.firstpage').hide();
-    playGame();
-    timerVar = setInterval(timer, 1000);
-  });
-
-
-  // move rabbit right 100px every right answer
+  // move rabbit right every correct answer
   function moveRabbit() {
-    // $('.rabbit').animate({left: "+=230"}, 400);
     // $('.rabbit').animate({left: "20%"}, 400);
     // $('.rabbit').animate({left: "50%", transform: 'translateX(-50%)'}.animate({top: '100px'}, 700);
-    $('.rabbit').animate({left: "+=17vw"}, 400);
+    $('.rabbit').animate({
+      left: "+=17vw"
+    }, 400);
   }
 
   // 5. show next question after answer clicked
-  $('.ans').click(function () {
+  $('.ans').click(function() {
+    // need 'this' for jquery val
     // if JOHN CENA
     if (currentQ === 4 && parseInt($(this).val()) == 3) {
       window.location = "https://www.youtube.com/watch?v=4k1xY7v8dDQ";
@@ -202,13 +181,13 @@ $(document).ready(function () {
     // if clicked last answer of quiz
     if (currentQ === 5) {
       return;
-    // correct answer 
+      // correct answer 
     } else if (parseInt($(this).val()) === QUESTIONS[currentQ].correctAns) {
       moveRabbit();
       correctScore += 1;
       console.log("User ans: " + $(this).val());
       console.log(`CORRECT SCORE: ${correctScore}`);
-    // wrong answer
+      // wrong answer
     } else {
       console.log("User ans: " + $(this).val());
       console.log("Wrong");
@@ -217,5 +196,26 @@ $(document).ready(function () {
     showQuestionsAns();
   });
 
+  // show total score and answers at end
+  function showAns() {
+    console.log(`TOTAL correct score: ${correctScore}`);
+    $('.quiz').hide();
+    $('.game').hide();
+    $('.lastpage').show();
+
+    // if win
+    if (correctScore === QUESTIONS.length) {
+      $('h1').appendTo('body').text('You Won!');
+      $('body').css('background-image', "url('https://giftsandmiracles.com/wp-content/uploads/2016/04/happy-bunny.jpg')");
+    // if lose
+    } else {
+      $('h1').appendTo('body').text('You Lost...');
+      $('body').css('background-image', "url('https://cdn-images-1.medium.com/max/1600/1*b2yqUDKglMbMlsnYKCCLnw.jpeg')");
+    }
+    let results = `${username}, you got ${correctScore} out of ${QUESTIONS.length} questions right in ${30-timeCount} seconds!`;
+    console.log(results);
+    $('h2').appendTo('body').html(results);
+    $('.reset').show();
+  }
 
 });
