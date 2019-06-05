@@ -5,7 +5,7 @@ $(document).ready(() => {
         "Insurance.com",
         "Internet.com",
         "Business.com",
-        "Beer.com"
+        "Money.com"
       ],
       correctAns: 0
     },
@@ -13,9 +13,9 @@ $(document).ready(() => {
       question: "Nephelococcygia is the practice of doing what?",
       choices: [
         "Finding shapes in clouds",
-        "Sleeping with your eyes open",
-        "Breaking glass with your voice",
-        "Swimming in freezing water"
+        "Sleeping with eyes open",
+        "Breaking glass with voice",
+        "Swimming in cold water"
       ],
       correctAns: 0
     },
@@ -42,7 +42,7 @@ $(document).ready(() => {
     {
       question: "Who is John Cena?",
       choices: [
-        "WWE superstar, actor, and rapper",
+        "wrestler, actor, rapper",
         "Who? I don't see anyone",
         "Don't pick this answer",
         "BUM BA DUM BUMM"
@@ -171,10 +171,10 @@ $(document).ready(() => {
   }
 
   // 5. show next question after answer clicked
-  $('.ans').click(function() {
-    // need 'this' for jquery val
+  $('.ans').click(({currentTarget}) => {
+    // event , event.currentTarget destructured
     // if JOHN CENA
-    if (currentQ === 4 && parseInt($(this).val()) == 3) {
+    if (currentQ === 4 && parseInt($(currentTarget).val()) == 3) {
       window.location = "https://www.youtube.com/watch?v=4k1xY7v8dDQ";
     }
 
@@ -182,14 +182,14 @@ $(document).ready(() => {
     if (currentQ === 5) {
       return;
       // correct answer 
-    } else if (parseInt($(this).val()) === QUESTIONS[currentQ].correctAns) {
+    } else if (parseInt($(currentTarget).val()) === QUESTIONS[currentQ].correctAns) {
       moveRabbit();
       correctScore += 1;
-      console.log("User ans: " + $(this).val());
+      console.log("User ans: " + $(currentTarget).val());
       console.log(`CORRECT SCORE: ${correctScore}`);
       // wrong answer
     } else {
-      console.log("User ans: " + $(this).val());
+      console.log("User ans: " + $(currentTarget).val());
       console.log("Wrong");
     }
     currentQ += 1;
