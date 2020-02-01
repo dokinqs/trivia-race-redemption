@@ -109,7 +109,7 @@ $(document).ready(() => {
   // 3. start game and show quiz
   function playGame() {
     $('body').show();
-    $('body').css('background-image', "url('https://i.ytimg.com/vi/h9N60GCN1iY/maxresdefault.jpg')");
+    $('body').css('background-color', "#9cd3a3");
     $('.quiz').show();
     $('.timer').show();
     $('.ans').show();
