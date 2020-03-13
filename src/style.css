@@ -2,7 +2,7 @@ html {
   height: 100%;
   text-align: center;
   font-family: 'Gochi Hand', sans-serif;
-  font-size: 20px;
+  font-size: 30px;
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -139,6 +139,7 @@ button {
 
 .timer {
   color: white;
+  padding: 20px;
 }
 
 .turtle {
@@ -179,7 +180,7 @@ button {
   }
   .text {
     margin: 0 5vw;
-    font-size: 3vw;
+    font-size: 4.5vw;
   }
   .turtle {
     width: 75px;
