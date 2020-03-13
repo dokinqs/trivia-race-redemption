@@ -7,8 +7,6 @@ html {
   background-size: cover;
   background-repeat: no-repeat;
   cursor: url('../carrotpointer.png'), auto;
-  /* cursor: url('https://78.media.tumblr.com/2af06ec2d6d542b9378ab539d1fec41a/tumblr_p6e81uoCjl1tgcve3o1_75sq.png'), auto; */
-  /* original: https//teak.io/images/blog/carrot_transparent.png */
 }
 
 .firstpage::before {
@@ -75,7 +73,6 @@ h1 {
 h2 {
   background: #e9b990;
   opacity: .7;
-  margin: 0 22vw;
   font-size: calc(26px + 1vw);
 }
 
@@ -175,32 +172,38 @@ button {
 }
 
 @media (max-width: 768px) {
-  .questions {
-    font-size: 4vh;
-  }
   .text {
     margin: 0 5vw;
     font-size: 4.5vw;
+  }
+  .questions {
+    font-size: 4vh;
   }
   .turtle {
     width: 75px;
     height: 40px;
     left: 70px;
-    top: 140px;
+    top: 210px;
   }
   .rabbit {
     width: 100px;
     height: 100px;
-    top: 120px;
+    top: 190px;
     left: 0;
   }
   .finishline {
     height: 40px;
-    top: 100px;
-    z-index: -1;
+    top: 170px;
   }
   button.ans {
-    margin-right: 13vw;
     font-size: 20px;
+    background: white;
+    width: 280px;
+  }
+  button:hover, input:hover {
+    box-shadow: none;
+  }
+  button, input {
+    outline: none;
   }
 }

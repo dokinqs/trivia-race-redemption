@@ -1,11 +1,11 @@
 $(document).ready(() => {
   const QUESTIONS = [{
-      question: "Which URL is the most expensive domain name of all time?",
+      question: "Most expensive domain name of all time?",
       choices: [
-        "Insurance.com",
+        "CarInsurance.com",
         "Internet.com",
         "Business.com",
-        "Money.com"
+        "PrivateJet.com"
       ],
       correctAns: 0
     },
@@ -20,7 +20,7 @@ $(document).ready(() => {
       correctAns: 0
     },
     {
-      question: "In the game Who Wants to be a Millionaire, which option was NOT a lifeline a contestant had?",
+      question: "NOT a lifeline in Who Wants to be a Millionaire?",
       choices: [
         "Ask the Audience",
         "Get a Hint",
@@ -126,7 +126,7 @@ $(document).ready(() => {
       showAns();
       return;
     }
-    $('.timer').html(`Seconds left: ${timeCount}`);
+    $('.timer').html(`${timeCount} seconds left`);
     console.log(`time count: ${timeCount}`);
   }
 
@@ -142,7 +142,7 @@ $(document).ready(() => {
     // show question and answer choices
     $('.questions').html(QUESTIONS[currentQ].question);
     // 30 second timer
-    $('.timer').html(`Seconds left: ${timeCount}`);
+    $('.timer').html(`${timeCount} seconds left`);
 
     $('.a').html(QUESTIONS[currentQ].choices[0]);
     $('.b').html(QUESTIONS[currentQ].choices[1]);
@@ -212,7 +212,7 @@ $(document).ready(() => {
       $('h1').appendTo('body').text('You Lost...');
       $('body').css('background-image', "url('https://cdn-images-1.medium.com/max/1600/1*b2yqUDKglMbMlsnYKCCLnw.jpeg')");
     }
-    let results = `${username}, you got ${correctScore} out of ${QUESTIONS.length} questions right in ${30-timeCount} seconds!`;
+    let results = `${username}, you got ${correctScore} out of ${QUESTIONS.length} questions correct in ${30-timeCount} seconds!`;
     console.log(results);
     $('h2').appendTo('body').html(results);
     $('.reset').show();
