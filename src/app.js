@@ -42,78 +42,51 @@ $(document).ready(() => {
     {
       question: "Who is John Cena?",
       choices: [
-        "wrestler, actor, rapper",
+        "Wrestler, actor, rapper",
         "Who? I don't see anyone",
-        "Don't pick this answer",
+        "Incorrect answer",
         "BUM BA DUM BUMM"
       ],
       correctAns: 0
     }
-    // {
-    //   question: "What is true of Cointreau?",
-    //   choices: [
-    //     "It's the name of the French president",
-    //     "It's not orange-flavored",
-    //     "It's made of triple sec",
-    //     "It has a 10% alcoholic content."
-    //   ],
-    //   correctAns: 2
-    // },
-    // {
-    //   question: "When is the moon the closest to the Earth?",
-    //   choices: [
-    //     "at perihelion",
-    //     "at apogee",
-    //     "at perigee",
-    //     "at 300,000 miles"
-    //   ],
-    //   correctAns: 2
-    // }
   ];
   let username,
     currentQ = 0,
     correctScore = 0,
     timeCount = 30;
 
-  // 1. bkgd image on load
-  // $('body').css('background-image', "url('https://outrunthezombeez.files.wordpress.com/2016/05/egj0x.gif')");
-  
-  // $('.game').hide();
+  //// 1. show landing page
   $('.reset').hide();
   $('.reset').click(() => {
     location.reload();
   });
   $('.lastpage').hide();
 
-  // 2. click on start button
-  $('.form').submit((e) => {
+  //// 2. click on start
+  $('.startform').submit((e) => {
     e.preventDefault();
     getUsername();
     $('.firstpage').hide();
     playGame();
     timerVar = setInterval(timer, 1000);
   });
-
-  // save username after start button clicked
+  // save submitted username
   function getUsername() {
-    console.log('input: ' + $('input').val());
     if ($('input').val() === undefined || $('input').val() === null || $('input').val() === "") {
       username = "Harey";
     } else {
       username = $('input').val();
     }
-    console.log(`Hi ${username}`);
+    // console.log(`Hi ${username}`);
     return username;
   }
   
-  // 3. start game and show quiz
+  //// 3. start game and show quiz
   function playGame() {
     $('body').show();
     $('body').css('background-color', "#9cd3a3");
     $('.quiz').show();
-    $('.timer').show();
-    $('.ans').show();
-    $('.game').show();
+    $('.icons').show();
     showQuestionsAns();
     moveTurtle();
   }
@@ -122,36 +95,36 @@ $(document).ready(() => {
     timeCount -= 1;
     if (timeCount === 0) {
       clearInterval(timerVar);
-      console.log('clear interval');
+      console.log("time's up!");
       showAns();
-      return;
+    } else {
+      $('.timer').html(`${timeCount} seconds left`);
+      // console.log(`${timeCount} sec left`);
     }
-    $('.timer').html(`${timeCount} seconds left`);
-    console.log(`time count: ${timeCount}`);
   }
 
-  // 4. load one question at a time
+  // load one question at a time
   function showQuestionsAns() {
     // if end of quiz
     if (currentQ === QUESTIONS.length || timeCount === 0) {
-      showAns();
-      console.log('end');
       clearInterval(timerVar);
+      console.log('end of questions');
+      showAns();
       return;
     }
+    // seconds left in timer
+    $('.timer').html(`${timeCount} seconds left`);
     // show question and answer choices
     $('.questions').html(QUESTIONS[currentQ].question);
-    // 30 second timer
-    $('.timer').html(`${timeCount} seconds left`);
 
     $('.a').html(QUESTIONS[currentQ].choices[0]);
     $('.b').html(QUESTIONS[currentQ].choices[1]);
     $('.c').html(QUESTIONS[currentQ].choices[2]);
     $('.d').html(QUESTIONS[currentQ].choices[3]);
 
-    console.log(`Question #${currentQ+1}`)
-    console.log(QUESTIONS[currentQ].choices);
-    console.log(`Correct ans: ${QUESTIONS[currentQ].correctAns}`);
+    // console.log(`Question #${currentQ+1}`)
+    // console.log(QUESTIONS[currentQ].choices);
+    // console.log(`Correct ans: ${QUESTIONS[currentQ].correctAns}`);
   }
 
   // move turtle timer right
@@ -160,57 +133,59 @@ $(document).ready(() => {
       left: "+=80vw"
     }, 100);
   }
-
-  // move rabbit right every correct answer
+  // move rabbit right if correct answer
   function moveRabbit() {
-    // $('.rabbit').animate({left: "20%"}, 400);
-    // $('.rabbit').animate({left: "50%", transform: 'translateX(-50%)'}.animate({top: '100px'}, 700);
     $('.rabbit').animate({
       left: "+=17vw"
     }, 400);
   }
 
-  // 5. show next question after answer clicked
+  //// 4. show next question after answer clicked
   $('.ans').click(({currentTarget}) => {
-    // event , event.currentTarget destructured
+    // (event, event.currentTarget destructured)
     // if JOHN CENA
     if (currentQ === 4 && parseInt($(currentTarget).val()) == 3) {
       window.location = "https://www.youtube.com/watch?v=4k1xY7v8dDQ";
     }
-
     // if clicked last answer of quiz
-    if (currentQ === 5) {
+    if (currentQ === 5 && parseInt($(currentTarget).val()) === QUESTIONS[currentQ].correctAns) {
+      moveRabbit();
+      console.log('last answer correct');
       return;
-      // correct answer 
+    } else if (currentQ === 5) {
+      console.log('last answer wrong');
+      return;
+    // not last answer and is correct answer 
     } else if (parseInt($(currentTarget).val()) === QUESTIONS[currentQ].correctAns) {
       moveRabbit();
       correctScore += 1;
-      console.log("User ans: " + $(currentTarget).val());
-      console.log(`CORRECT SCORE: ${correctScore}`);
-      // wrong answer
+      // console.log("User ans: " + $(currentTarget).val());
+      console.log(`Correct! Current score: ${correctScore}`);
+    // not last answer and is wrong answer
     } else {
-      console.log("User ans: " + $(currentTarget).val());
-      console.log("Wrong");
+      // console.log("User ans: " + $(currentTarget).val());
+      console.log(`Wrong. Current score: ${correctScore}`);
     }
     currentQ += 1;
     showQuestionsAns();
   });
 
-  // show total score and answers at end
+  //// 5. show total score and answers at end
   function showAns() {
-    console.log(`TOTAL correct score: ${correctScore}`);
+    // console.log(`TOTAL correct score: ${correctScore}`);
     $('.quiz').hide();
-    $('.game').hide();
+    $('.icons').hide();
     $('.lastpage').show();
-
-    // if win
+    // if won
     if (correctScore === QUESTIONS.length) {
       $('h1').appendTo('body').text('You Won!');
       $('body').css('background-image', "url('https://giftsandmiracles.com/wp-content/uploads/2016/04/happy-bunny.jpg')");
-    // if lose
+      console.log('Wow, perfect score!');
+    // if lost
     } else {
       $('h1').appendTo('body').text('You Lost...');
       $('body').css('background-image', "url('https://cdn-images-1.medium.com/max/1600/1*b2yqUDKglMbMlsnYKCCLnw.jpeg')");
+      console.log('Wanna try again?');
     }
     let results = `${username}, you got ${correctScore} out of ${QUESTIONS.length} questions correct in ${30-timeCount} seconds!`;
     console.log(results);

@@ -3,12 +3,13 @@ html {
   text-align: center;
   font-family: 'Gochi Hand', sans-serif;
   font-size: 30px;
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
   cursor: url('../carrotpointer.png'), auto;
 }
-
+html, body {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
 .firstpage::before {
   content: "";
   background-image: url('https://outrunthezombeez.files.wordpress.com/2016/05/egj0x.gif');
@@ -44,131 +45,101 @@ button {
   outline: none;
   font-family: 'Gochi Hand', sans-serif;
 }
-
-button:hover,
-input:hover {
+input:hover,
+button:hover {
   /* h & v offset, blur & spread rad */
   box-shadow: 5px 5px 5px 3px rgba(5, 53, 27, 0.3);
   background: rgb(205, 235, 193);
 }
 
-form {
-  z-index: 10;
-}
-
-body {
-  /* min-height: 640px; */
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-}
-
 h1 {
-  margin: 5vh 20vw 4vw;
   font-size: calc(26px + 2vw);
-  z-index: 10;
   color: #004800;
 }
-
 h2 {
   background: #e9b990;
-  opacity: .7;
+  opacity: 0.7;
   font-size: calc(26px + 1vw);
 }
-
-button {
-  display: hide;
-  /* if display: none; uncenters */
-}
-
 .text {
   background: white;
-  opacity: .8;
+  opacity: 0.8;
   margin: 0 12vw;
 }
-
 .username {
   padding: 10px;
   font-size: 20px;
   margin: 5px;
   width: 160px; 
 }
-
 .start {
   background: #90c290;
   text-decoration: none;
   padding: 10px;
   font-size: 20px;
+  border-radius: 0;
 }
 
 /* GAME */
-
-.quiz {
-  display: none;
-  /* padding: 50px; */
-}
-
-.ans,
-.game {
-  display: none;
-  /* margin: 10px; */
-}
-
-.game {
-  position: absolute;
-  top: 300px;
-  height: 300px;
-}
-
-.questions {
-  font-size: 45px;
-  font-weight: bold;
-  background: #e9b990;
-}
-
-button {
-  font-size: 30px;
-  padding: 10px;
-  margin: 15px 5vw;
-  width: 35vw;
-  min-width: 140px;
-}
 
 .timer {
   color: white;
   padding: 20px;
 }
+.quiz {
+  display: none;
+}
+.icons {
+  display: none;
+  position: absolute;
+  top: 300px;
+  /* height: 300px; */
+}
+.questions {
+  font-size: 4vw;
+  font-weight: bold;
+  background: #e9b990;
+}
+
+button {
+  display: hide;
+  font-size: 30px;
+  padding: 10px;
+  margin: 10px 5vw;
+  width: 35vw;
+  min-width: 140px;
+}
 
 .turtle {
+  position: absolute;
   width: 90px;
   height: 60px;
   text-align: none;
-  position: absolute;
   left: 90px;
   top: 40px;
   transition-duration: 30s;
+  z-index: 3;
 }
-
-.rabbit {
-  width: 150px;
-  height: 150px;
-  text-align: none;
-  position: absolute;
-  left: 0;
-  top: 8vh;
-}
-
 .finishline {
+  position: absolute;
   height: 100px;
   top: 50px;
   left: 80vw;
+  z-index: 4;
+}
+.rabbit {
   position: absolute;
+  width: 150px;
+  height: 150px;
+  text-align: none;
+  left: 0;
+  top: 8vh;
   z-index: 5;
 }
 
 .reset {
+  display: none;
   margin-top: 10vh;
-  /* display: block; */
 }
 
 @media (max-width: 768px) {
@@ -178,22 +149,6 @@ button {
   }
   .questions {
     font-size: 4vh;
-  }
-  .turtle {
-    width: 75px;
-    height: 40px;
-    left: 70px;
-    top: 210px;
-  }
-  .rabbit {
-    width: 100px;
-    height: 100px;
-    top: 190px;
-    left: 0;
-  }
-  .finishline {
-    height: 40px;
-    top: 170px;
   }
   button.ans {
     font-size: 20px;
@@ -205,5 +160,21 @@ button {
   }
   button, input {
     outline: none;
+  }
+  .turtle {
+    width: 75px;
+    height: 40px;
+    left: 70px;
+    top: 210px;
+  }
+  .finishline {
+    height: 40px;
+    top: 170px;
+  }
+  .rabbit {
+    width: 100px;
+    height: 100px;
+    top: 190px;
+    left: 0;
   }
 }

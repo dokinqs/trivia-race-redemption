@@ -1,64 +1,59 @@
 <!DOCTYPE html>
 <html>
-
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="author" content="Karen Zhao">
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="src/style.css" />
-    <link rel="icon" href="https://cdn2.iconfinder.com/data/icons/road-and-navigation/180/20-512.png" />
-    <link href="https://fonts.googleapis.com/css?family=Gochi+Hand" rel="stylesheet" />
-    <title>Trivia Race</title>
-  </head>
-
-  <body>
-    <div class="firstpage">
-      <h1>TRIVIA GAME RACE</h1>
-      <h2>Harey's Redemption</h2>
-      <div class="text">
-        <p>
-          Oh no! Harey has fallen asleep during a race against Tortoise.
-          <br>Help Harey redeem himself and win the race.
-        </p>
-        <p>
-          Answer five questions correctly before Tortoise reaches the finish line!
-        </p>
-        <p>
-          ... 0.2 MPH 🐢 vs. 🐰 40 MPH !!!<br>~Good Luck~
-        </p>
-      </div>
-      <div>
-        <form class="form">
-          <input class="username" type="text" placeholder="What's your name?" maxlength="11"/>
-          <input class="start" type="submit" value="Start"/>
-        </form>
-      </div>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="Karen Zhao">
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="src/style.css" />
+  <link rel="icon" href="https://cdn2.iconfinder.com/data/icons/road-and-navigation/180/20-512.png" />
+  <link href="https://fonts.googleapis.com/css?family=Gochi+Hand" rel="stylesheet" />
+  <title>Trivia Race</title>
+</head>
+<body>
+  <div class="firstpage">
+    <h1>TRIVIA GAME RACE</h1>
+    <h2>The Tortoise and the Hare</h2>
+    <div class="text">
+      <p>
+        Oh no! Harey has fallen asleep during a race against Tortoise.
+        <br />Help Harey win the race.
+      </p>
+      <p>(you) 🐰 vs 🐢</p>
+      <p>
+        Answer 5 questions correctly before Tortoise reaches the finish line!
+      </p>
     </div>
-
-
-    <div class="quiz">
-      <div class="timer"></div>
-      <div class="questions"></div>
-      <div class="choices">
-        <button class="ans a" value="0"></button>
-        <button class="ans b" value="1"></button>
-        <button class="ans c" value="2"></button>
-        <button class="ans d" value="3"></button>
-      </div>
+    <div>
+      <form class="startform">
+        <input class="username" type="text" placeholder="Your name?" maxlength="13"/>
+        <input class="start" type="submit" value="Start"/>
+      </form>
     </div>
+  </div>
 
-    <div class="game">
-      <img class="turtle" src="https://66.media.tumblr.com/807843939e5863c9ebe09b35dbd28966/tumblr_pr7lwwLY0I1tgcve3o1_500.png" />
-      <img class="rabbit" src="https://66.media.tumblr.com/5c12c6e736a7cd06dea2d3506793ade8/tumblr_pr7lwwLY0I1tgcve3o2_500.gif" />
-      <img class="finishline" src="https://www.thedataschool.co.uk/wp-content/uploads/2016/02/flag-start.gif" />
+
+  <div class="quiz">
+    <div class="timer"></div>
+    <div class="questions"></div>
+    <div class="choices">
+      <button class="ans a" value="0"></button>
+      <button class="ans b" value="1"></button>
+      <button class="ans c" value="2"></button>
+      <button class="ans d" value="3"></button>
     </div>
+  </div>
 
-    <div class="lastpage">
-      <button class="reset">Play Again</button>
-    </div>
+  <div class="icons">
+    <img class="turtle" src="https://66.media.tumblr.com/807843939e5863c9ebe09b35dbd28966/tumblr_pr7lwwLY0I1tgcve3o1_500.png" />
+    <img class="rabbit" src="https://66.media.tumblr.com/5c12c6e736a7cd06dea2d3506793ade8/tumblr_pr7lwwLY0I1tgcve3o2_500.gif" />
+    <img class="finishline" src="https://www.thedataschool.co.uk/wp-content/uploads/2016/02/flag-start.gif" />
+  </div>
 
-    <script src="src/app.js"></script>
-  </body>
+  <div class="lastpage">
+    <button class="reset">Play Again</button>
+  </div>
 
+  <script src="src/app.js"></script>
+</body>
 </html>
