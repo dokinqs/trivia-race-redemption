@@ -62,16 +62,15 @@ $(document).ready(() => {
   });
   $('.lastpage').hide();
 
-  //// 2. click on start
+  //// 2. start was clicked
   $('.startform').submit((e) => {
     e.preventDefault();
-    getUsername();
+    saveUsername();
     $('.firstpage').hide();
     playGame();
     timerVar = setInterval(timer, 1000);
   });
-  // save submitted username
-  function getUsername() {
+  function saveUsername() {
     if ($('input').val() === undefined || $('input').val() === null || $('input').val() === "") {
       username = "Harey";
     } else {
@@ -79,6 +78,17 @@ $(document).ready(() => {
     }
     // console.log(`Hi ${username}`);
     return username;
+  }
+  function timer() {
+    timeCount -= 1;
+    if (timeCount === 0) {
+      clearInterval(timerVar);
+      console.log("time's up!");
+      showResult();
+    } else {
+      $('.timer').html(`Seconds left: ${timeCount}`);
+      // console.log(`${timeCount} sec left`);
+    }
   }
   
   //// 3. start game and show quiz
@@ -90,43 +100,27 @@ $(document).ready(() => {
     showQuestionsAns();
     moveTurtle();
   }
-
-  function timer() {
-    timeCount -= 1;
-    if (timeCount === 0) {
-      clearInterval(timerVar);
-      console.log("time's up!");
-      showAns();
-    } else {
-      $('.timer').html(`${timeCount} seconds left`);
-      // console.log(`${timeCount} sec left`);
-    }
-  }
-
   // load one question at a time
   function showQuestionsAns() {
     // if end of quiz
     if (currentQ === QUESTIONS.length || timeCount === 0) {
       clearInterval(timerVar);
       console.log('end of questions');
-      showAns();
+      setTimeout(function() {
+        showResult();
+      }, 400);
       return;
     }
-    // seconds left in timer
-    $('.timer').html(`${timeCount} seconds left`);
     // show question and answer choices
     $('.questions').html(QUESTIONS[currentQ].question);
-
     $('.a').html(QUESTIONS[currentQ].choices[0]);
     $('.b').html(QUESTIONS[currentQ].choices[1]);
     $('.c').html(QUESTIONS[currentQ].choices[2]);
     $('.d').html(QUESTIONS[currentQ].choices[3]);
-
     // console.log(`Question #${currentQ+1}`)
     // console.log(QUESTIONS[currentQ].choices);
     // console.log(`Correct ans: ${QUESTIONS[currentQ].correctAns}`);
   }
-
   // move turtle timer right
   function moveTurtle() {
     $('.turtle').animate({
@@ -148,13 +142,12 @@ $(document).ready(() => {
       window.location = "https://www.youtube.com/watch?v=4k1xY7v8dDQ";
     }
     // if clicked last answer of quiz
-    if (currentQ === 5 && parseInt($(currentTarget).val()) === QUESTIONS[currentQ].correctAns) {
+    if (currentQ === 4 && parseInt($(currentTarget).val()) === QUESTIONS[currentQ].correctAns) {
       moveRabbit();
-      console.log('last answer correct');
-      return;
-    } else if (currentQ === 5) {
-      console.log('last answer wrong');
-      return;
+      correctScore += 1;
+      console.log(`Correct! Final score: ${correctScore}`);
+    } else if (currentQ === 4) {
+      console.log(`Wrong. Final score: ${correctScore}`);
     // not last answer and is correct answer 
     } else if (parseInt($(currentTarget).val()) === QUESTIONS[currentQ].correctAns) {
       moveRabbit();
@@ -171,8 +164,7 @@ $(document).ready(() => {
   });
 
   //// 5. show total score and answers at end
-  function showAns() {
-    // console.log(`TOTAL correct score: ${correctScore}`);
+  function showResult() {
     $('.quiz').hide();
     $('.icons').hide();
     $('.lastpage').show();
@@ -180,12 +172,12 @@ $(document).ready(() => {
     if (correctScore === QUESTIONS.length) {
       $('h1').appendTo('body').text('You Won!');
       $('body').css('background-image', "url('https://giftsandmiracles.com/wp-content/uploads/2016/04/happy-bunny.jpg')");
-      console.log('Wow, perfect score!');
+      console.log('Wow, you won!');
     // if lost
     } else {
       $('h1').appendTo('body').text('You Lost...');
       $('body').css('background-image', "url('https://cdn-images-1.medium.com/max/1600/1*b2yqUDKglMbMlsnYKCCLnw.jpeg')");
-      console.log('Wanna try again?');
+      console.log('You lost, wanna try again?');
     }
     let results = `${username}, you got ${correctScore} out of ${QUESTIONS.length} questions correct in ${30-timeCount} seconds!`;
     console.log(results);
